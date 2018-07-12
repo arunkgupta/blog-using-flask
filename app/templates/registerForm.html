@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<form action="" method="post">
+	{{ registerform.hidden_tag() }}
+		<p> 
+		{{ registerform.username.label }} : <span> {{ registerform.username() }} </span> 
+			{% for error in registerform.username.errors %}
+			<span style="color:red;">
+				{{error}}
+			</span>
+			{% endfor %}
+		</p>
+		<p> {{ registerform.email.label }} : <span> {{ registerform.email() }} </span>
+			{% for error in registerform.email.errors %}
+			<span style="color:red;">
+				{{error}}
+			</span>
+			{% endfor %}
+		</p>
+		<p> {{ registerform.password.label }} : <span> {{ registerform.password() }} </span>
+			{% for error in registerform.password.errors %}
+			<span style="color:red;">
+				{{error}}
+			</span>
+			{% endfor %}
+		</p>
+		<p> {{ registerform.confpassword.label }} : <span> {{ registerform.confpassword() }} </span>
+			{% for error in registerform.confpassword.errors %}
+			<span style="color:red;">
+				{{error}}
+			</span>
+			{% endfor %}
+		</p>
+		<p> {{ registerform.submit() }} </p>
+	</form>
+{% endblock %}

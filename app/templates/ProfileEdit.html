@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<form action="" method="post">
+	{{ profileform.hidden_tag() }}
+		<p> 
+		{{ profileform.username.label }} : <span> {{ profileform.username() }} </span> 
+			{% for error in profileform.username.errors %}
+			<span style="color:red;">
+				{{error}}
+			</span>
+			{% endfor %}
+		</p>
+		<p> {{ profileform.aboutme.label }} : <span> {{ profileform.aboutme() }} (Max. 140 Characters) </span>
+			{% for error in profileform.aboutme.errors %}
+			<span style="color:red;">
+				{{error}}
+			</span>
+			{% endfor %}
+		</p>
+		<p> {{ profileform.submit() }} </p>
+	</form>
+{% endblock %}

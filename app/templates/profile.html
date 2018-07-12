@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+		<h3>Hello, {{current_user.username}}</h3>
+		<img src="{{user.avatar(128)}}"/>
+		<hr/>
+		<div>
+			{% if user.about_me %}
+				{{user.about_me}}
+			{% endif %}
+			<h6>
+				{% if user.last_seen %}
+					{{ user.last_seen }}
+				{% endif %}
+			</h6>
+			{% if current_user == user %}
+				<a href={{url_for('edit_profile')}}>Edit Profile</a>
+			{% endif %}
+		</div>
+		<div>
+			{% for post in posts %}
+				{% include "_post.html" %}
+			{% endfor %}	
+		</div>
+				
+		
+{% endblock %}
+

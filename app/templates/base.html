@@ -1,0 +1,32 @@
+<html>
+	<head>
+		{% if title %}
+		<title>You are most welcome to {{title}}</title>
+		{% else %}
+		<title>Welcome to Arun's Blog</title>
+		{% endif %}
+	</head>
+	<body>
+		<div>
+			<a href="{{url_for('index')}}">Home</a>
+			
+			{% if current_user.is_anonymous %}
+				<a href="{{url_for('login')}}">Sign in</a>
+				
+				<a href="{{url_for('register')}}">Register</a>
+			{% else %}
+				<a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
+				<a href="{{url_for('logout')}}">Sign out</a>
+			{% endif %}
+		</div>
+		<hr/>
+		{% with flash_messages = get_flashed_messages() %}
+			{% if flash_messages %}
+				{% for message in flash_messages%}
+					<p style="font-weight:bold;">{{message}}</p>
+				{%endfor%}
+			{% endif %}
+		{% endwith %}
+		{% block content %} {% endblock %}
+	</body>
+</html>
